@@ -22,7 +22,7 @@ export default function Homepage() {
 
   // const {loading, error, data} = useFetch("http://localhost:1337/api/reviews");
   const {loading, error, data} = useQuery(REVIEWS);
-  console.log(loading, error, data);
+  console.log( data);
 
   if(loading) return <p>Loading ...</p>
   if(error) return <p>Error :(</p>
