@@ -2,6 +2,9 @@ import React from 'react'
 import {Link, useParams} from 'react-router-dom'
 // import useFetch from '../hooks/useFetch';
 import {useQuery, gql} from "@apollo/client";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import DOMpurify from "dompurify";
 
 const REVIEW = gql`
   query GetReview($id:ID!) {
@@ -54,7 +57,11 @@ export default function ReviewDetails() {
         )
       }
 
-      <p>{data.review.data.attributes.body}</p>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+        {
+          DOMpurify.sanitize(data.review.data.attributes.body)
+        }
+      </ReactMarkdown>
       <Link to="/">Back to Home</Link>
     </div>
   )
