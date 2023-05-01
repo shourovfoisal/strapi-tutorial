@@ -20,6 +20,9 @@ export default function SiteHeader() {
   const {loading, data, error} = useQuery(CATEGORIES);
   console.log(data);
 
+  if (loading) return <p>Loading categories...</p>
+  if (error) return <p>Error fetching categories</p>
+
   return (
     <div className='site-header'>
         <Link to="/"><h1>Ninja Reviews</h1></Link>
